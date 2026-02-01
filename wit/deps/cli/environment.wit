@@ -1,0 +1,13 @@
+package wasi:cli@0.2.0;
+
+/// WASI Environment provides access to environment variables
+interface environment {
+    /// Get all environment variables as key-value pairs
+    get-environment: func() -> list<tuple<string, string>>;
+
+    /// Get command-line arguments
+    get-arguments: func() -> list<string>;
+
+    /// Get the initial working directory
+    initial-cwd: func() -> option<string>;
+}

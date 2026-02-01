@@ -1,19 +1,15 @@
 
-
-use crate::bindings::exports::docs::getcoordsfromaddressworld::getcoordsfromaddress::{Address, Coordinates};
+use bindings::exports::docs::getcoordsfromaddressworld::getcoordsfromaddress::{Address, Coordinates};
+use bindings::wasi::cli::environment;
 mod bindings {
-    //! This module contains generated code for implementing
-    //! the `adder` world in `wit/world.wit`.
-    //!
-    //! The `path` option is actually not required,
-    //! as by default `wit_bindgen::generate` will look
-    //! for a top-level `wit` directory and use the files
-    //! (and interfaces/worlds) there-in.
     wit_bindgen::generate!({
-        path: "wit/world.wit",
+        world: "getcoordsfromaddressworld",
+        path: "wit",
+        with: {
+            "wasi:cli/environment@0.2.0": generate,
+        },
     });
 
-    // In the lines below we use the generated `export!()` macro re-use and
     use super::GetCoordsFromAddressComponent;
     export!(GetCoordsFromAddressComponent);
 }
@@ -22,6 +18,10 @@ struct GetCoordsFromAddressComponent;
 
 impl bindings::exports::docs::getcoordsfromaddressworld::getcoordsfromaddress::Guest for GetCoordsFromAddressComponent {
     fn getcoordsfromaddress(address: Address) -> Coordinates {       
+         let env_vars = environment::get_environment();
+
+        
+
         // Dummy implementation that returns fixed coordinates
         match address {
             _ => Coordinates { latitude: 0.0, longitude: 0.0 }, // Unknown address component

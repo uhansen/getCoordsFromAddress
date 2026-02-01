@@ -19,5 +19,7 @@ interface getcoordsfromaddress {
 }
 
 world getcoordsfromaddressworld {
-	export getcoordsfromaddress;
+    import wasi:cli/environment@0.2.0;
+	
+    export getcoordsfromaddress;
 }
