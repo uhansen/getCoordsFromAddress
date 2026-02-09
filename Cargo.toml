@@ -1,5 +1,5 @@
 [package]
-name = "getCoordsFromAddress"
+name = "get_coords_from_address"
 version = "0.1.0"
 edition = "2024"
 
